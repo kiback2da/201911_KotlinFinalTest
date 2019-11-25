@@ -2,6 +2,7 @@ package com.tjoeun.a201911_kotlinfinaltest
 
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_lotto.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -36,7 +37,31 @@ class LottoActivity : BaseActivity() {
         // 3개 5등 => 5천원
         // 꽝 => 0원
 
+        var correctCnt = 0
+        var countCnt = 0
 
+        for(markNum in resultArrayList){
+            for(thisWeekNum in lottoNumArrayList){
+                if(markNum == thisWeekNum){
+                    correctCnt++
+                }
+            }
+        }
+
+        if(correctCnt == 6){
+           Toast.makeText(mContext,"1등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+        }else if(correctCnt == 5){
+            Toast.makeText(mContext,"3등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+        }else if(correctCnt == 4){
+            Toast.makeText(mContext,"4등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+        }else if(correctCnt == 3){
+            Toast.makeText(mContext,"5등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+        }else {
+            Toast.makeText(mContext,"꽝",Toast.LENGTH_SHORT).show()
+            countCnt++
+            setThisWeekLottoNum()
+            checkLottoResult()
+        }
     }
 
     //숫자를 랜덤으로 6개를 생성 1 ~ 45, 중복이 되면 안됨.
