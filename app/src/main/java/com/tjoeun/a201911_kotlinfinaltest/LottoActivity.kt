@@ -77,8 +77,22 @@ class LottoActivity : BaseActivity() {
         when(correctCnt){
             6 -> {winnerMoney += 2000000000
                   firstCnt++}
-            5 -> {winnerMoney += 1500000
-                  fourthCnt++}
+            5 -> {
+                var isSecondRank = false
+                for(num in lottoNumArrayList){
+                    if(num == bonusNum){
+                        isSecondRank = true
+                    }
+                }
+
+                if(isSecondRank){
+                    secontCnt++
+                    winnerMoney += 6500000
+                }else{
+                    winnerMoney += 1500000
+                    fourthCnt++
+                }
+            }
             4 -> {winnerMoney += 50000
                   thirdCnt++}
             3 -> {usedMoney -= 5000

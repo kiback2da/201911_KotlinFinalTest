@@ -24,14 +24,14 @@
             android:id="@+id/lottoTxtLotNum1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:text="\?"/>
 
         <TextView
             android:id="@+id/lottoTxtLotNum2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:text="\?"/>
 
@@ -39,7 +39,7 @@
             android:id="@+id/lottoTxtLotNum3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:text="\?"/>
 
@@ -47,7 +47,7 @@
             android:id="@+id/lottoTxtLotNum4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:text="\?"/>
 
@@ -55,7 +55,7 @@
             android:id="@+id/lottoTxtLotNum5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:text="\?"/>
 
@@ -63,14 +63,14 @@
             android:id="@+id/lottoTxtLotNum6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:text="\?"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:text="+"/>
 
@@ -78,7 +78,7 @@
             android:id="@+id/lottoTxtLotNumBonus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"
             android:text="\?"/>
 
