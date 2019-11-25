@@ -9,6 +9,11 @@ import kotlin.collections.ArrayList
 
 class LottoActivity : BaseActivity() {
 
+    //사용금액
+    var usedMoney = 0L
+    //당첨금액
+    var winnerMoney = 0L
+
     var lottoNumArrayList = ArrayList<Int>()
     var lottoTextArrayList = ArrayList<TextView>()
 
@@ -26,6 +31,8 @@ class LottoActivity : BaseActivity() {
         lottoBtnBuyOne.setOnClickListener {
             setThisWeekLottoNum()
             checkLottoResult()
+            usedMoney += 1000
+            lottoTxtUsedMoney.text = String.format("사용금액 : %,d원",usedMoney)
         }
     }
 
@@ -38,7 +45,7 @@ class LottoActivity : BaseActivity() {
         // 꽝 => 0원
 
         var correctCnt = 0
-        var countCnt = 0
+
 
         for(markNum in resultArrayList){
             for(thisWeekNum in lottoNumArrayList){
@@ -49,19 +56,22 @@ class LottoActivity : BaseActivity() {
         }
 
         if(correctCnt == 6){
-           Toast.makeText(mContext,"1등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+           Toast.makeText(mContext,"1등 당첨!!",Toast.LENGTH_SHORT).show()
+            winnerMoney += 2000000000
         }else if(correctCnt == 5){
-            Toast.makeText(mContext,"3등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext,"3등 당첨!!",Toast.LENGTH_SHORT).show()
+            winnerMoney += 1500000
         }else if(correctCnt == 4){
-            Toast.makeText(mContext,"4등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext,"4등 당첨!!",Toast.LENGTH_SHORT).show()
+            winnerMoney += 50000
         }else if(correctCnt == 3){
-            Toast.makeText(mContext,"5등 당첨!!,${countCnt}",Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext,"5등 당첨!!",Toast.LENGTH_SHORT).show()
+            winnerMoney += 5000
         }else {
             Toast.makeText(mContext,"꽝",Toast.LENGTH_SHORT).show()
-            countCnt++
-            setThisWeekLottoNum()
-            checkLottoResult()
         }
+
+
     }
 
     //숫자를 랜덤으로 6개를 생성 1 ~ 45, 중복이 되면 안됨.
