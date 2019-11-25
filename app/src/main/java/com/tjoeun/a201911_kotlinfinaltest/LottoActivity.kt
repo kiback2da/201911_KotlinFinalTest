@@ -25,8 +25,12 @@ class LottoActivity : BaseActivity() {
     var fifthCnt = 0
     var wrongCnt = 0
 
+    // 보너스 번호 1개만 저장
+    var bonusNum = 0
+    //당첨번호 6개 저장
     var lottoNumArrayList = ArrayList<Int>()
     var lottoTextArrayList = ArrayList<TextView>()
+
 
     var resultArrayList = ArrayList<Int>()
     var resultTxtArrayList = ArrayList<TextView>()
@@ -164,6 +168,22 @@ class LottoActivity : BaseActivity() {
 
         //당첨번호 6개를 작은숫자부터 큰 숫자 순서대로(정렬)
         Collections.sort(lottoNumArrayList)
+
+        //보너스 번호 추가 (중복제외)
+        var tempRandomNum = (Math.random()*45+1).toInt()
+        var isDup = true
+        for(num in lottoNumArrayList){
+            if(tempRandomNum == num){
+                //중복발견
+                isDup = false
+                break
+            }
+            if(isDup){
+                bonusNum = tempRandomNum
+                break
+            }
+        }
+        lottoTxtLotNumBonus.text = bonusNum.toString()
 
         //6개의 텍스트 뷰와 숫자를 뽑아내서 연결
         for(i in 0..lottoNumArrayList.size-1){
