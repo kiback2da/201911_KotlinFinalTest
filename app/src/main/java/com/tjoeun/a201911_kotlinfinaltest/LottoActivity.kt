@@ -1,6 +1,7 @@
 package com.tjoeun.a201911_kotlinfinaltest
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_lotto.*
@@ -34,10 +35,24 @@ class LottoActivity : BaseActivity() {
             usedMoney += 1000
             lottoTxtUsedMoney.text = String.format("사용금액 : %,d원",usedMoney)
         }
+
+        lottoBtnAutoBuy.setOnClickListener {
+            while (true) {
+                setThisWeekLottoNum()
+                checkLottoResult()
+                usedMoney += 1000
+                lottoTxtUsedMoney.text = String.format("사용금액 : %,d원", usedMoney)
+
+                if(winnerMoney >= 2000000000){
+                    break
+                }
+            }
+        }
     }
 
     // 로또 당첨 결과를 확인
     fun checkLottoResult(){
+
         // 6개 1등 => 20억
         // 5개 3등 => 150만원
         // 4개 4등 => 5만원
@@ -45,7 +60,6 @@ class LottoActivity : BaseActivity() {
         // 꽝 => 0원
 
         var correctCnt = 0
-
 
         for(markNum in resultArrayList){
             for(thisWeekNum in lottoNumArrayList){
@@ -55,29 +69,29 @@ class LottoActivity : BaseActivity() {
             }
         }
 
+        when(correctCnt){
+            6 -> winnerMoney += 2000000000
+            5 -> winnerMoney += 1500000
+            4 -> winnerMoney += 50000
+            3 -> winnerMoney += 5000
+        }
+        /*
         if(correctCnt == 6){
-           Toast.makeText(mContext,"1등 당첨!!",Toast.LENGTH_SHORT).show()
+           //Toast.makeText(mContext,"1등 당첨!!",Toast.LENGTH_SHORT).show()
             winnerMoney += 2000000000
         }else if(correctCnt == 5){
-            Toast.makeText(mContext,"3등 당첨!!",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(mContext,"3등 당첨!!",Toast.LENGTH_SHORT).show()
             winnerMoney += 1500000
-            setThisWeekLottoNum()
-            checkLottoResult()
+
         }else if(correctCnt == 4){
-            Toast.makeText(mContext,"4등 당첨!!",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(mContext,"4등 당첨!!",Toast.LENGTH_SHORT).show()
             winnerMoney += 50000
-            setThisWeekLottoNum()
-            checkLottoResult()
         }else if(correctCnt == 3){
-            Toast.makeText(mContext,"5등 당첨!!",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(mContext,"5등 당첨!!",Toast.LENGTH_SHORT).show()
             winnerMoney += 5000
-            setThisWeekLottoNum()
-            checkLottoResult()
         }else {
-            Toast.makeText(mContext,"꽝",Toast.LENGTH_SHORT).show()
-            setThisWeekLottoNum()
-            checkLottoResult()
-        }
+            //Toast.makeText(mContext,"꽝",Toast.LENGTH_SHORT).show()
+        }*/
 
         lottoTxtWinnderMoney.text = String.format("누적 당첨 금액 : %,d",winnerMoney)
     }
