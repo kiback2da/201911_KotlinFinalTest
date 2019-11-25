@@ -1,6 +1,7 @@
 package com.tjoeun.a201911_kotlinfinaltest
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
@@ -9,6 +10,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class LottoActivity : BaseActivity() {
+
+    var mHandler = Handler()
 
     //사용금액
     var usedMoney = 0L
@@ -37,16 +40,7 @@ class LottoActivity : BaseActivity() {
         }
 
         lottoBtnAutoBuy.setOnClickListener {
-            while (true) {
-                setThisWeekLottoNum()
-                checkLottoResult()
-                usedMoney += 1000
-                lottoTxtUsedMoney.text = String.format("사용금액 : %,d원", usedMoney)
-
-                if(winnerMoney >= 2000000000){
-                    break
-                }
-            }
+            doLottoLoop()
         }
     }
 
@@ -94,6 +88,22 @@ class LottoActivity : BaseActivity() {
         }*/
 
         lottoTxtWinnderMoney.text = String.format("누적 당첨 금액 : %,d",winnerMoney)
+    }
+
+    fun doLottoLoop(){
+        mHandler.post(){
+            if(usedMoney < 100000000){
+                setThisWeekLottoNum()
+                checkLottoResult()
+                usedMoney += 1000
+                lottoTxtUsedMoney.text = String.format("사용금액 : %,d원", usedMoney)
+                doLottoLoop()
+            }else{
+                runOnUiThread {
+                    Toast.makeText(mContext,"구매를 종료합니다",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     //숫자를 랜덤으로 6개를 생성 1 ~ 45, 중복이 되면 안됨.
