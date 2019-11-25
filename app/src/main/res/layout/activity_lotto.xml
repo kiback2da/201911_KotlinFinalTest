@@ -67,6 +67,21 @@
             android:layout_marginLeft="20dp"
             android:text="\?"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:layout_marginLeft="20dp"
+            android:text="+"/>
+
+        <TextView
+            android:id="@+id/lottoTxtLotNumBonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:layout_marginLeft="20dp"
+            android:text="\?"/>
+
     </LinearLayout>
 
     <TextView
@@ -160,5 +175,47 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="누적 당첨 금액 : ??원" />
+
+    <TextView
+        android:id="@+id/lottoTxtWinnerCount1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="1등 ?"/>
+
+    <TextView
+        android:id="@+id/lottoTxtWinnerCount2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="2등 ?"/>
+
+    <TextView
+        android:id="@+id/lottoTxtWinnerCount3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="3등 ?"/>
+
+    <TextView
+        android:id="@+id/lottoTxtWinnerCount4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="4등 ?"/>
+
+    <TextView
+        android:id="@+id/lottoTxtWinnerCount5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="5등 ?"/>
+
+    <TextView
+        android:id="@+id/lottoTxtWrongCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="낙첨 ?"/>
 
 </LinearLayout>

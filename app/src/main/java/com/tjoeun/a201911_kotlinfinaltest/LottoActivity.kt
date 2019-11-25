@@ -18,6 +18,13 @@ class LottoActivity : BaseActivity() {
     //당첨금액
     var winnerMoney = 0L
 
+    var firstCnt = 0
+    var secontCnt = 0
+    var thirdCnt = 0
+    var fourthCnt = 0
+    var fifthCnt = 0
+    var wrongCnt = 0
+
     var lottoNumArrayList = ArrayList<Int>()
     var lottoTextArrayList = ArrayList<TextView>()
 
@@ -64,11 +71,23 @@ class LottoActivity : BaseActivity() {
         }
 
         when(correctCnt){
-            6 -> winnerMoney += 2000000000
-            5 -> winnerMoney += 1500000
-            4 -> winnerMoney += 50000
-            3 -> winnerMoney += 5000
+            6 -> {winnerMoney += 2000000000
+                  firstCnt++}
+            5 -> {winnerMoney += 1500000
+                  fourthCnt++}
+            4 -> {winnerMoney += 50000
+                  thirdCnt++}
+            3 -> {usedMoney -= 5000
+                  fifthCnt++}
+            else -> wrongCnt++
         }
+
+        lottoTxtWinnerCount1.text = String.format("1등 당첨 : %,d",firstCnt)
+        lottoTxtWinnerCount2.text = String.format("2등 당첨 : %,d",secontCnt)
+        lottoTxtWinnerCount3.text = String.format("3등 당첨 : %,d",thirdCnt)
+        lottoTxtWinnerCount4.text = String.format("4등 당첨 : %,d",fourthCnt)
+        lottoTxtWinnerCount5.text = String.format("5등 당첨 : %,d",fifthCnt)
+        lottoTxtWrongCount.text = String.format("낙첨 당첨 : %,d",wrongCnt)
         /*
         if(correctCnt == 6){
            //Toast.makeText(mContext,"1등 당첨!!",Toast.LENGTH_SHORT).show()
