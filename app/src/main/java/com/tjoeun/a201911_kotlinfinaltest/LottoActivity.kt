@@ -115,25 +115,7 @@ class LottoActivity : BaseActivity() {
         lottoTxtWinnerCount3.text = String.format("3등 당첨 : %,d",thirdCnt)
         lottoTxtWinnerCount4.text = String.format("4등 당첨 : %,d",fourthCnt)
         lottoTxtWinnerCount5.text = String.format("5등 당첨 : %,d",fifthCnt)
-        lottoTxtWrongCount.text = String.format("낙첨 당첨 : %,d",wrongCnt)
-        /*
-        if(correctCnt == 6){
-           //Toast.makeText(mContext,"1등 당첨!!",Toast.LENGTH_SHORT).show()
-            winnerMoney += 2000000000
-        }else if(correctCnt == 5){
-            //Toast.makeText(mContext,"3등 당첨!!",Toast.LENGTH_SHORT).show()
-            winnerMoney += 1500000
-
-        }else if(correctCnt == 4){
-            //Toast.makeText(mContext,"4등 당첨!!",Toast.LENGTH_SHORT).show()
-            winnerMoney += 50000
-        }else if(correctCnt == 3){
-            //Toast.makeText(mContext,"5등 당첨!!",Toast.LENGTH_SHORT).show()
-            winnerMoney += 5000
-        }else {
-            //Toast.makeText(mContext,"꽝",Toast.LENGTH_SHORT).show()
-        }*/
-
+        lottoTxtWrongCount.text = String.format("낙첨 횟수 : %,d",wrongCnt)
         lottoTxtWinnderMoney.text = String.format("누적 당첨 금액 : %,d",winnerMoney)
     }
 
