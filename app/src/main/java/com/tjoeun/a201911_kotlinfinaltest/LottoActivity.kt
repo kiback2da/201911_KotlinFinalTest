@@ -11,6 +11,9 @@ class LottoActivity : BaseActivity() {
     var lottoNumArrayList = ArrayList<Int>()
     var lottoTextArrayList = ArrayList<TextView>()
 
+    var resultArrayList = ArrayList<Int>()
+    var resultTxtArrayList = ArrayList<TextView>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lotto)
@@ -21,8 +24,19 @@ class LottoActivity : BaseActivity() {
     override fun setupEvents() {
         lottoBtnBuyOne.setOnClickListener {
             setThisWeekLottoNum()
-
+            checkLottoResult()
         }
+    }
+
+    // 로또 당첨 결과를 확인
+    fun checkLottoResult(){
+        // 6개 1등 => 20억
+        // 5개 3등 => 150만원
+        // 4개 4등 => 5만원
+        // 3개 5등 => 5천원
+        // 꽝 => 0원
+
+
     }
 
     //숫자를 랜덤으로 6개를 생성 1 ~ 45, 중복이 되면 안됨.
@@ -80,5 +94,16 @@ class LottoActivity : BaseActivity() {
         lottoTextArrayList.add(lottoTxtLotNum4)
         lottoTextArrayList.add(lottoTxtLotNum5)
         lottoTextArrayList.add(lottoTxtLotNum6)
+
+        resultTxtArrayList.add(lottoTxtMyLotNum1)
+        resultTxtArrayList.add(lottoTxtMyLotNum2)
+        resultTxtArrayList.add(lottoTxtMyLotNum3)
+        resultTxtArrayList.add(lottoTxtMyLotNum4)
+        resultTxtArrayList.add(lottoTxtMyLotNum5)
+        resultTxtArrayList.add(lottoTxtMyLotNum6)
+
+        for(i in resultTxtArrayList){
+            resultArrayList.add(i.text.toString().toInt())
+        }
     }
 }
