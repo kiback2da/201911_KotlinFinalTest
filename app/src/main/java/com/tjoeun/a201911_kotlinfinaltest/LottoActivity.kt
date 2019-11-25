@@ -12,6 +12,7 @@ import kotlin.collections.ArrayList
 class LottoActivity : BaseActivity() {
 
     var mHandler = Handler()
+    var isNowBying = false
 
     //사용금액
     var usedMoney = 0L
@@ -51,7 +52,16 @@ class LottoActivity : BaseActivity() {
         }
 
         lottoBtnAutoBuy.setOnClickListener {
-            doLottoLoop()
+            if(!isNowBying) {
+                doLottoLoop()
+                isNowBying = true
+                lottoBtnAutoBuy.text = "구매 중단"
+            }else{
+                //반복 중단 로직 필요
+                stopLottoLoop()
+                isNowBying = false
+                lottoBtnAutoBuy.text = "자동 구매 재개"
+            }
         }
     }
 
@@ -90,11 +100,11 @@ class LottoActivity : BaseActivity() {
                     winnerMoney += 6500000
                 }else{
                     winnerMoney += 1500000
-                    fourthCnt++
+                    thirdCnt++
                 }
             }
             4 -> {winnerMoney += 50000
-                  thirdCnt++}
+                  fourthCnt++}
             3 -> {usedMoney -= 5000
                   fifthCnt++}
             else -> wrongCnt++
@@ -127,8 +137,8 @@ class LottoActivity : BaseActivity() {
         lottoTxtWinnderMoney.text = String.format("누적 당첨 금액 : %,d",winnerMoney)
     }
 
-    fun doLottoLoop(){
-        mHandler.post(){
+    var lottoRunnable = object : Runnable{
+        override fun run() {
             if(usedMoney < 100000000){
                 setThisWeekLottoNum()
                 checkLottoResult()
@@ -141,6 +151,14 @@ class LottoActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    fun doLottoLoop(){
+        mHandler.post(lottoRunnable)
+    }
+
+    fun stopLottoLoop(){
+        mHandler.removeCallbacks(lottoRunnable)
     }
 
     //숫자를 랜덤으로 6개를 생성 1 ~ 45, 중복이 되면 안됨.
