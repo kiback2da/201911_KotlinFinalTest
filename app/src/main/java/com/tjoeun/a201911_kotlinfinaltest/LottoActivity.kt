@@ -61,17 +61,25 @@ class LottoActivity : BaseActivity() {
         }else if(correctCnt == 5){
             Toast.makeText(mContext,"3등 당첨!!",Toast.LENGTH_SHORT).show()
             winnerMoney += 1500000
+            setThisWeekLottoNum()
+            checkLottoResult()
         }else if(correctCnt == 4){
             Toast.makeText(mContext,"4등 당첨!!",Toast.LENGTH_SHORT).show()
             winnerMoney += 50000
+            setThisWeekLottoNum()
+            checkLottoResult()
         }else if(correctCnt == 3){
             Toast.makeText(mContext,"5등 당첨!!",Toast.LENGTH_SHORT).show()
             winnerMoney += 5000
+            setThisWeekLottoNum()
+            checkLottoResult()
         }else {
             Toast.makeText(mContext,"꽝",Toast.LENGTH_SHORT).show()
+            setThisWeekLottoNum()
+            checkLottoResult()
         }
 
-
+        lottoTxtWinnderMoney.text = String.format("누적 당첨 금액 : %,d",winnerMoney)
     }
 
     //숫자를 랜덤으로 6개를 생성 1 ~ 45, 중복이 되면 안됨.
