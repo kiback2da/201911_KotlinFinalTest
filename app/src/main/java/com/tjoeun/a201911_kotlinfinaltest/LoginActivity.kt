@@ -1,7 +1,6 @@
 package com.tjoeun.a201911_kotlinfinaltest
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -45,7 +44,7 @@ class LoginActivity : BaseActivity() {
 
                         Log.d("로그 : json","${token}")
 
-                        var intent = Intent(mContext,LoginDetailActivity::class.java)
+                        var intent = Intent(mContext,NoticeListActivity::class.java)
 
                         startActivity(intent)
                         finish()
