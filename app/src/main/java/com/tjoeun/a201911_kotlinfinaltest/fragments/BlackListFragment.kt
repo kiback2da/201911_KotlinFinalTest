@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tjoeun.a201911_kotlinfinaltest.R
+import com.tjoeun.a201911_kotlinfinaltest.adapter.BlackLIstAdapter
 import com.tjoeun.a201911_kotlinfinaltest.data.BlackListData
 import com.tjoeun.a201911_kotlinfinaltest.util.ServerUtil
+import kotlinx.android.synthetic.main.fragment_blacklist.*
 import org.json.JSONObject
 
 class BlackListFragment : Fragment() {
@@ -42,6 +44,6 @@ class BlackListFragment : Fragment() {
     }
 
     fun setValues(){
-
+        blackListView.adapter = BlackLIstAdapter(requireContext(), blackList)
     }
 }

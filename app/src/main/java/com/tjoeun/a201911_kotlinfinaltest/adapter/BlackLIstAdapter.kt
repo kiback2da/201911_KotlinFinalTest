@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.tjoeun.a201911_kotlinfinaltest.R
 import com.tjoeun.a201911_kotlinfinaltest.data.BlackListData
 
@@ -19,10 +20,10 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var tempRow = convertView
         if(tempRow == null){
-            tempRow = inf.inflate(R.layout.black_list_item,false)
+            tempRow = inf.inflate(R.layout.black_list_item, null)
         }
 
-        var row = tempRow
+        var row = tempRow!!
 
         var data = mList.get(position).mJson
         var id = data.getInt("id")
@@ -47,6 +48,15 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
         var cTitle = categoryData.getString("title")
         var cColot = categoryData.getString("color")
 
+        var mId = row.findViewById<TextView>(R.id.blackListTxtID)
+        var mTitle = row.findViewById<TextView>(R.id.blackListTxtTitle)
+        var mContent = row.findViewById<TextView>(R.id.blackListTxtContent)
+        var mCreateDate = row.findViewById<TextView>(R.id.blackListTxtCreateDate)
+
+        mId.text = id.toString()
+        mTitle.text = title
+        mContent.text = content
+        mCreateDate.text = createDate
 
         return row
     }
