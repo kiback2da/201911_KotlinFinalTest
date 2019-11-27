@@ -14,7 +14,7 @@ import com.tjoeun.a201911_kotlinfinaltest.util.ServerUtil
 import kotlinx.android.synthetic.main.fragment_notice.*
 import org.json.JSONObject
 
-class NoticeFragment : Fragment() {
+class NoticeFragment : BaseFragment() {
 
     var noticeList = ArrayList<NoticeData>()
     var noticeAdapter : NoticeAdapter? = null
@@ -33,7 +33,7 @@ class NoticeFragment : Fragment() {
         setValues()
     }
 
-    fun setupEvents() {
+    override fun setupEvents() {
         ServerUtil.getNotice(requireContext(),object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
                 Log.d("로그 : json","${json.toString()}")
@@ -60,7 +60,7 @@ class NoticeFragment : Fragment() {
         })
     }
 
-    fun setValues() {
+    override fun setValues() {
         noticeAdapter = NoticeAdapter(requireContext(), noticeList)
         fragmentNoticeListView.adapter = noticeAdapter
     }

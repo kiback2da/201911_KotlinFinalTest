@@ -12,7 +12,7 @@ import com.tjoeun.a201911_kotlinfinaltest.util.ServerUtil
 import kotlinx.android.synthetic.main.fragment_blacklist.*
 import org.json.JSONObject
 
-class BlackListFragment : Fragment() {
+class BlackListFragment : BaseFragment() {
 
     var blackList = ArrayList<BlackListData>()
 
@@ -30,7 +30,7 @@ class BlackListFragment : Fragment() {
         setValues()
     }
 
-    fun setupEvents() {
+    override fun setupEvents() {
         ServerUtil.getBlackList(requireContext(), object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
                 var data = json.getJSONObject("data")
@@ -43,7 +43,7 @@ class BlackListFragment : Fragment() {
         })
     }
 
-    fun setValues(){
+    override fun setValues(){
         blackListView.adapter = BlackLIstAdapter(requireContext(), blackList)
     }
 }
