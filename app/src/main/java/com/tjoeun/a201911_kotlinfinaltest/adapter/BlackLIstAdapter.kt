@@ -1,12 +1,16 @@
 package com.tjoeun.a201911_kotlinfinaltest.adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.tjoeun.a201911_kotlinfinaltest.R
+import com.tjoeun.a201911_kotlinfinaltest.R.layout.board_list_item
 import com.tjoeun.a201911_kotlinfinaltest.data.BlackListData
 
 class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListData>) : ArrayAdapter<BlackListData>(context, res, list){
@@ -15,12 +19,12 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
     var mList = list
     var inf = LayoutInflater.from(mContext)
 
-    constructor(context: Context, list : ArrayList<BlackListData>) : this(context, R.layout.board_list_item ,list)
+    constructor(context: Context, list : ArrayList<BlackListData>) : this(context, board_list_item ,list)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var tempRow = convertView
         if(tempRow == null){
-            tempRow = inf.inflate(R.layout.board_list_item, null)
+            tempRow = inf.inflate(board_list_item, null)
         }
 
         var row = tempRow!!
@@ -46,7 +50,7 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
         var categoryData = writerData.getJSONObject("category")
         var cId = categoryData.getInt("id")
         var cTitle = categoryData.getString("title")
-        var cColot = categoryData.getString("color")
+        var cColor = categoryData.getString("color")
 
         var mWriter = row.findViewById<TextView>(R.id.blackListTxtWriter)
         var mTitle = row.findViewById<TextView>(R.id.blackListTxtTitle)
@@ -57,6 +61,9 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
         mTitle.text = title
         mContent.text = content
         mCategory.text = cTitle.substring(0,1)
+        mCategory.background.setColorFilter(Color.parseColor(cColor),PorterDuff.Mode.SRC)
+
+
 
         return row
     }

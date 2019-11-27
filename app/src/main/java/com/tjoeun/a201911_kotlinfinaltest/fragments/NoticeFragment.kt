@@ -36,6 +36,9 @@ class NoticeFragment : BaseFragment() {
     override fun setupEvents() {
         ServerUtil.getNotice(requireContext(),object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
+
+                noticeList.clear()
+
                 Log.d("로그 : json","${json.toString()}")
                 var code = json.getInt("code")
                 if(code == 200){
@@ -50,6 +53,10 @@ class NoticeFragment : BaseFragment() {
                         var createDate = noticeData.get("created_at").toString()
 
                         noticeList.add(NoticeData(id,title,content,createDate))
+                    }
+
+                    activity!!.runOnUiThread {
+                        noticeAdapter?.notifyDataSetChanged()
                     }
 
                 }else{

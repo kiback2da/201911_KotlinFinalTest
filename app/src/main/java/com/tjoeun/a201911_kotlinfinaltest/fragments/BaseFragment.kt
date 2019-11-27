@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragment : Fragment(){
 
-    var mContextUtil =  activity
+    var mContext =  activity
 
     abstract fun setupEvents()
     abstract fun setValues()
