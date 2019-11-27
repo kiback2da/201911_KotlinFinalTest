@@ -60,10 +60,8 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
         mWriter.text = wName
         mTitle.text = title
         mContent.text = content
-        mCategory.text = cTitle.substring(0,1)
+        mCategory.text = cTitle.first().toString()
         mCategory.background.setColorFilter(Color.parseColor(cColor),PorterDuff.Mode.SRC)
-
-
 
         return row
     }
