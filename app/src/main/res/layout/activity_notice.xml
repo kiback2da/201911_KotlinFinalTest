@@ -7,9 +7,47 @@
     android:orientation="vertical"
     tools:context=".NoticeListActivity">
 
-    <ListView
-        android:id="@+id/noticeListView"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/finalTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="#000000"
+        app:tabIndicatorHeight="3dp"
+        app:tabTextColor="#FF0000"
+        app:tabSelectedTextColor="#0000FF"
+        app:tabGravity="fill"
+        app:tabMode="scrollable"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/finalViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/testFirstFragment"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                class="com.tjoeun.a201911_kotlinfinaltest.fragments.NoticeFragment"/>
+
+            <fragment
+                android:id="@+id/testSecondFragment"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                class="com.tjoeun.a201911_kotlinfinaltest.fragments.BlackListFragment"/>
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
 </LinearLayout>

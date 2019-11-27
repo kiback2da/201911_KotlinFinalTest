@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.tjoeun.a201911_kotlinfinaltest.data.ParameterData
 import com.tjoeun.a201911_kotlinfinaltest.util.ContextUtil
 import com.tjoeun.a201911_kotlinfinaltest.util.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
@@ -26,9 +27,11 @@ class LoginActivity : BaseActivity() {
                 Log.d("로그 : isChecked","${loginEdtLoginID.text.toString()}")
                 ContextUtil.setRememberId(mContext,true)
                 ContextUtil.setUserId(mContext,loginEdtLoginID.text.toString())
+                ContextUtil.setUserPW(mContext,loginEdtLoginPW.text.toString())
             }else{
                 ContextUtil.setRememberId(mContext,false)
                 ContextUtil.setUserId(mContext,"")
+                ContextUtil.setUserPW(mContext,"")
             }
         }
 
@@ -63,6 +66,7 @@ class LoginActivity : BaseActivity() {
         if(remeberId){
             Log.d("로그","${ContextUtil.getUserId(mContext)}")
             loginEdtLoginID.setText(ContextUtil.getUserId(mContext))
+            loginEdtLoginPW.setText(ContextUtil.getUserPW(mContext))
             loginChkSaveID.isChecked = true
         }else{
             loginChkSaveID.isChecked = false
