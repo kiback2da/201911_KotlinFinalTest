@@ -15,12 +15,12 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
     var mList = list
     var inf = LayoutInflater.from(mContext)
 
-    constructor(context: Context, list : ArrayList<BlackListData>) : this(context, R.layout.black_list_item ,list)
+    constructor(context: Context, list : ArrayList<BlackListData>) : this(context, R.layout.board_list_item ,list)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var tempRow = convertView
         if(tempRow == null){
-            tempRow = inf.inflate(R.layout.black_list_item, null)
+            tempRow = inf.inflate(R.layout.board_list_item, null)
         }
 
         var row = tempRow!!
@@ -48,15 +48,15 @@ class BlackLIstAdapter(context: Context, res : Int, list : ArrayList<BlackListDa
         var cTitle = categoryData.getString("title")
         var cColot = categoryData.getString("color")
 
-        var mId = row.findViewById<TextView>(R.id.blackListTxtID)
+        var mWriter = row.findViewById<TextView>(R.id.blackListTxtWriter)
         var mTitle = row.findViewById<TextView>(R.id.blackListTxtTitle)
         var mContent = row.findViewById<TextView>(R.id.blackListTxtContent)
-        var mCreateDate = row.findViewById<TextView>(R.id.blackListTxtCreateDate)
+        var mCategory = row.findViewById<TextView>(R.id.blackListTxtCategory)
 
-        mId.text = id.toString()
+        mWriter.text = wName
         mTitle.text = title
         mContent.text = content
-        mCreateDate.text = createDate
+        mCategory.text = cTitle.substring(0,1)
 
         return row
     }
