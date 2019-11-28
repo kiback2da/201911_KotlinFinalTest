@@ -155,5 +155,41 @@ class ServerUtil {
         }
 
 
+        fun postRequestBlackList(context: Context, title:String, content:String, handler:JsonResponseHandler?){
+
+            //우리가 만드는 안드로이드 앱을 클라이어트 역할로 동작하게 해주는 클래스
+            var client = OkHttpClient()
+
+            //기능 주소와 서버주소를 조합해서 실제 요청 주소 완성
+            var url = "${BASE_URL}/black_list"
+
+            //POST 메소드에서 요구하는 파라미터를 formBody에 기록
+            var formBody = FormBody.Builder()
+                .add("title",title)
+                .add("content",content)
+                .build()
+
+            //실제로 날아갈 요청(request) 생성
+            var request = Request.Builder()
+                .url(url)
+                .header("X-Http-Token",ContextUtil.getToken(context))
+                .post(formBody)
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e("서버통신에러",e.localizedMessage)
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    var body = response.body()!!.string()
+                    Log.d("서버",body)
+
+                    var json = JSONObject(body)
+                    handler?.onResponse(json)
+                }
+            })
+        }
+
     }
 }
