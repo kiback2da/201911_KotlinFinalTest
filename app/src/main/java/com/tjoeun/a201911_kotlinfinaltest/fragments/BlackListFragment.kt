@@ -26,6 +26,7 @@ class BlackListFragment : BaseFragment() {
     var dateFilterStartDate:Calendar? = null
 
     var blackList = ArrayList<BlackListData>()
+    var filteredBlackList = ArrayList<BlackListData>()
     var blackListAdapter : BlackLIstAdapter? = null
 
     override fun onCreateView(
@@ -64,17 +65,23 @@ class BlackListFragment : BaseFragment() {
                 if(dateFilterStartDate == null){
                     dateFilterStartDate = Calendar.getInstance()
                 }
-                val year = dateFilterStartDate?.set(year,month,dayOfMonth)
+                dateFilterStartDate?.set(year,month,dayOfMonth,0,0,0)
 
                 val sdf = SimpleDateFormat("yyyy.MM.dd ~")
                 blackListTxtDateFilter.text = sdf.format(dateFilterStartDate?.time)
             }, 2019, Calendar.NOVEMBER, 1)
             dp.show()
+
+            dp.setOnCancelListener {
+                blackListTxtDateFilter.text = "없음"
+            }
+
+            filterBlackList()
         }
     }
 
     override fun setValues(){
-        blackListAdapter = BlackLIstAdapter(requireContext(), blackList)
+        blackListAdapter = BlackLIstAdapter(requireContext(), filteredBlackList)
         blackListView.adapter = blackListAdapter
     }
 
@@ -96,5 +103,26 @@ class BlackListFragment : BaseFragment() {
                 }
             }
         })
+    }
+
+    fun filterBlackList(){
+        filteredBlackList.clear()
+
+        for(bl in blackList){
+            if(dateFilterStartDate == null){
+                //날짜 필터가 설정되지 않았다면 모든 목록을 보여주라고 필터된목록에 추가
+                filteredBlackList.add(bl)
+            }else{
+                var json = bl.mJson
+                var data = json.getJSONObject("data")
+                var createAt = data.getLong("created_at")
+
+                if(dateFilterStartDate!!.timeInMillis > createAt){
+                    //날짜 필터가 설정되어 있다면 게시글의 작성일자 > 날짜필터
+                    filteredBlackList.add(bl)
+                }
+
+            }
+        }
     }
 }
