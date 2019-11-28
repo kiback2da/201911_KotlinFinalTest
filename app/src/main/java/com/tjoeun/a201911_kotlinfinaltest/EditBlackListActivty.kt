@@ -17,6 +17,7 @@ class EditBlackListActivty : BaseActivity() {
         setValues()
     }
 
+
     override fun setupEvents() {
 
         editBlackListBtnPost.setOnClickListener {

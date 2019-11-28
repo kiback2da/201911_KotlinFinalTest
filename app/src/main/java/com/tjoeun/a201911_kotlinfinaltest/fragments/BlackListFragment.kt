@@ -36,12 +36,24 @@ class BlackListFragment : BaseFragment() {
         setValues()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getBlackListFromServer()
+    }
+
     override fun setupEvents() {
         fragmentNoticeBtnAddNotice.setOnClickListener {
             val intent = Intent(requireContext(), EditBlackListActivty::class.java)
             startActivity(intent)
         }
+    }
 
+    override fun setValues(){
+        blackListAdapter = BlackLIstAdapter(requireContext(), blackList)
+        blackListView.adapter = blackListAdapter
+    }
+
+    fun getBlackListFromServer(){
         ServerUtil.getBlackList(requireContext(), object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
 
@@ -59,10 +71,5 @@ class BlackListFragment : BaseFragment() {
                 }
             }
         })
-    }
-
-    override fun setValues(){
-        blackListAdapter = BlackLIstAdapter(requireContext(), blackList)
-        blackListView.adapter = blackListAdapter
     }
 }
