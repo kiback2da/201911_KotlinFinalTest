@@ -34,6 +34,9 @@ class NoticeFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
+
+
+
         ServerUtil.getNotice(requireContext(),object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
 

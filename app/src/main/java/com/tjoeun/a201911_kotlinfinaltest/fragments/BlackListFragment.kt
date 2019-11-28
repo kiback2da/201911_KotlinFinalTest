@@ -1,16 +1,20 @@
 package com.tjoeun.a201911_kotlinfinaltest.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.tjoeun.a201911_kotlinfinaltest.EditBlackListActivty
 import com.tjoeun.a201911_kotlinfinaltest.R
 import com.tjoeun.a201911_kotlinfinaltest.adapter.BlackLIstAdapter
 import com.tjoeun.a201911_kotlinfinaltest.adapter.NoticeAdapter
 import com.tjoeun.a201911_kotlinfinaltest.data.BlackListData
 import com.tjoeun.a201911_kotlinfinaltest.util.ServerUtil
 import kotlinx.android.synthetic.main.fragment_blacklist.*
+import kotlinx.android.synthetic.main.fragment_blacklist.fragmentNoticeBtnAddNotice
+import kotlinx.android.synthetic.main.fragment_notice.*
 import org.json.JSONObject
 
 class BlackListFragment : BaseFragment() {
@@ -33,6 +37,11 @@ class BlackListFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
+        fragmentNoticeBtnAddNotice.setOnClickListener {
+            val intent = Intent(requireContext(), EditBlackListActivty::class.java)
+            startActivity(intent)
+        }
+
         ServerUtil.getBlackList(requireContext(), object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
 
